@@ -1,10 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Share+Tech+Mono';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
-@font-face {
-  font-family: "Digital";
-  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot");
-  src: url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.woff") format("woff"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/8e22783d707ad140bffe18b2a3812529.svg#Digital-7") format("svg");
-}
+
 
 
 
@@ -15,30 +12,26 @@ html, body {
   height: 100%;
   width: 100%;
   --main-border-radius: 16px;
-
+  --color1: #FF6D43;
+  font-family: 'Montserrat', sans-serif;
 }
 
-div {
-  border: 1px solid black;
+.nav-link {
+  color: var(--color1) !important;
 }
 
-.header {
-  overflow: hidden;
-  background-color: white;
-  padding: 30px 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.nav-link i {
+  font-size: larger;
 }
 
-.search {
-  position: absolute;
-  width: 455px;
-  height: 40px;
+.form-control{
   border-radius: var(--main-border-radius);
+  width: 30em !important;
+
+}
+.form-control:focus {
+  box-shadow: 0 0 0 .15rem var(--color1);
 }
 
-.header-right a{
-  padding: 0px 10px;
-}
+
+
