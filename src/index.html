@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - Proxaid</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -39,10 +40,10 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-bell-o"></i></a>
+          <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-question-circle-o"></i></a>
+          <a class="nav-link" href="#"><i class="far fa-question-circle"></i></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,14 +82,34 @@
 
   <div class="row m-4" style="height: 500px">
     <div class="col h-100  bg-white mx-4" id="">
-      <div class="row m-4 mb-1 p-3 pb-0" id="date">Sat, Jan 16</div>
-      <div class="row mx-4 px-3" id="time">18:21</div>
-      <div class="row mx-4 px-3 pt-2" id="weather">68 deg</div>
-      <div class="row mx-4 px-3 row-bottom">hello</div>
+      <div class="mb-5 pb-5" id="general-info">
+
+        <div class="row m-4 mb-1 p-3 pb-0" id="date">Sat, Jan 16</div>
+        <div class="row mx-4 px-3" id="time">18:21</div>
+        <div class="row mx-4 px-3 pt-2" id="weather">
+          <p><i class="fas fa-wind"></i> 68 deg</p>
+        </div>
+      </div>
+      
+      <div class="row mx-4 px-3 align-self-end" id="btns-row">
+        <button type="button" class="btn col" id="btn-weather"><i class="fas fa-cloud"></i><br/>Weather</button>
+        <button type="button" class="btn col" id="btn-alarm"><i class="fas fa-clock"></i><br/>Alarm</button>
+        <button type="button" class="btn col" id="btn-calendar"><i class="fas fa-calendar"></i><br/>Calendar</button>
+        
+      </div>
 
     </div>
-    <div class="col h-100 bg-dark mx-4" id="">
-      <div class="row w-100 bg-white">yo</div>
+
+
+
+
+
+    <div class="col bg-dark mx-4" id="">
+      <div class="d-flex flex-column bg-white" id="reminders">
+        <div class="row m-0 p-3 pb-0" style="color: #8C8C8C">Reminders</div>
+        
+      </div>
+      <div class="row">Test</div>
 
     </div>
   </div>

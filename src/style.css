@@ -36,10 +36,9 @@ html, body {
 
 
 .container {
-  border: 1px solid black !important;
 }
 
-.btn {
+#row-btns1 .btn {
   border-radius: var(--main-border-radius);
 }
 
@@ -75,10 +74,36 @@ html, body {
   border-radius: var(--main-border-radius);
 }
 
-.row-bottom {
-  position: fixed;
-  bottom: 0px;
+#btns-row .col {
+  border-radius: 5px;
+  margin: 15px;
+  width: 80px;
+  height: 80px;
 }
+
+#btn-weather {
+  background-color: #00C2FF;
+}
+
+#btn-alarm {
+  background-color: #FF8743;
+}
+
+#btn-calendar {
+  background-color: #4CAF50;
+}
+
+#reminders {
+  border-radius: var(--main-border-radius);
+  min-height: 50%;
+  margin: 0px !important;
+}
+
+#reminders-list {
+
+}
+
+
 
 
 
