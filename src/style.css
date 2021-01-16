@@ -35,3 +35,51 @@ html, body {
 
 
 
+.container {
+  border: 1px solid black !important;
+}
+
+.btn {
+  border-radius: var(--main-border-radius);
+}
+
+#btn-camera {
+  background-color: #18A0FB;
+}
+
+#btn-apps {
+  background-color: #FF7D04;
+}
+
+#date {
+  font-size: 24px;
+  color: #8C8C8C;
+}
+
+#time {
+  font-size: 64px;
+  color: #333333;
+}
+
+#weather {
+  font-size: 24px;
+  color: #7E7E7E;
+}
+
+.row-btns1 .col {
+  padding: 0px;
+
+}
+
+.col {
+  border-radius: var(--main-border-radius);
+}
+
+.row-bottom {
+  position: fixed;
+  bottom: 0px;
+}
+
+
+
+
