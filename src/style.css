@@ -103,6 +103,25 @@ html, body {
 
 }
 
+#right .btn {
+  background-color: white;
+  border-radius: var(--main-border-radius);
+  height: 50px;;
+}
+
+#btn-door {
+  border: 1px solid #18A0FB;
+}
+
+#btn-lights {
+  border: 1px solid #FF6D43;
+}
+
+#btn-fan {
+  border: 1px solid #4CAF50;
+}
+
+
 .overlay {
   /* Height & width depends on how you want to reveal the overlay (see JS below) */   
   height: 100%;
