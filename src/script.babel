@@ -171,7 +171,7 @@ class ToggleButton extends React.Component {
 class HomeControls extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.equipment = {
       door: {
         html: <div><i class="fas fa-door-open"></i> Door</div>,
         id: "btn-door",
@@ -188,6 +188,12 @@ class HomeControls extends React.Component {
         color: "#4CAF50"
       },
     };
+
+    // this.state = {
+    //   door: false,
+    //   lights: false,
+    //   fan: false
+    // }
     this.toggleState = this.toggleState.bind(this);
   }
 
@@ -198,9 +204,9 @@ class HomeControls extends React.Component {
   render() {
     return (
       <React.Fragment>
-          <ToggleButton {...this.state.door} />
-          <ToggleButton {...this.state.lights} />
-          <ToggleButton {...this.state.fan} />
+          <ToggleButton {...this.equipment.door} />
+          <ToggleButton {...this.equipment.lights} />
+          <ToggleButton {...this.equipment.fan} />
       </React.Fragment>
     )
   }

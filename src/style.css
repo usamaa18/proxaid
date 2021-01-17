@@ -80,6 +80,11 @@ html, body {
 
 }
 
+/* UI design decision*/
+.btn:focus {
+  box-shadow: none;
+}
+
 .col {
   border-radius: var(--main-border-radius);
 }
