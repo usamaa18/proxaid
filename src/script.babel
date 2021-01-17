@@ -100,7 +100,7 @@ class Camera extends React.Component {
         <div id="myNav" class="overlay">
           <a href="javascript:void(0)" class="closebtn" onClick={this.toggleCamera}>&times;</a>
 
-          <div class="overlay-content d-flex justify-content-around">
+          <div class="overlay-content d-flex flex-wrap justify-content-around">
             <div>
               <div>
 
