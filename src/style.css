@@ -119,7 +119,7 @@ html, body {
 
 .overlay-content {
   position: relative;
-  top: 10%; /* 25% from the top */
+  top: 5%; /* 25% from the top */
   width: 100%; /* 100% width */
   text-align: center; /* Centered text/links */
   margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
@@ -131,6 +131,7 @@ html, body {
   right: 45px;
   font-size: 60px;
   color: var(--color1);
+  z-index: 99;
 }
 
 
