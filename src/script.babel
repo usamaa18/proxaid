@@ -1,5 +1,5 @@
 
-class Camera extends React.Component {
+class CameraApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +27,16 @@ class Camera extends React.Component {
   }
 
   takePicture() {
-    console.log("Size of image: " + this.webcam.snap().length/1000 + " KB");
-    this.setState({picture: this.webcam.snap()}, () => console.log(this.state.picture));
+    let video = this.webcam.video;
+    let canvas = document.getElementById("canvasHidden");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+    // Other browsers will fall back to image/png
+    let data = canvas.toDataURL("image/png");
+    console.log("Size of image: " + data.length/1000 + " KB");
+    this.setState({picture: data}, () => console.log(this.state.picture));
+
 
   }
 
@@ -59,18 +67,69 @@ class Camera extends React.Component {
 
   componentDidUpdate () {
     if (this.state.displayCamera) {
-      const webcamElement = document.getElementById('webcam');
+      ////////////////////
+      const videoElement = document.getElementById('webcam');
       const canvasElement = document.getElementById('canvas');
-      const snapSoundElement = document.getElementById('snapSound');
-      this.webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+      const canvasCtx = canvasElement.getContext('2d');
+
+      function onResults(results) {
+        canvasCtx.save();
+        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        canvasCtx.drawImage(
+            results.image, 0, 0, canvasElement.width, canvasElement.height);
+        if (results.multiHandLandmarks) {
+          for (const landmarks of results.multiHandLandmarks) {
+            drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                          {color: '#00FF00', lineWidth: 5});
+            drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
+          }
+        }
+        canvasCtx.restore();
+      }
+
+      const hands = new Hands({locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+      }});
+      hands.setOptions({
+        maxNumHands: 2,
+        minDetectionConfidence: 0.5,
+        minTrackingConfidence: 0.5
+      });
+      hands.onResults(onResults);
+
+      this.webcam = new Camera(videoElement, {
+        onFrame: async () => {
+          await hands.send({image: videoElement});
+        },
+        width: 540,
+        height: 304
+      });
+
+      console.log(this.webcam);
+      this.webcam.start();
+
+      //////////////////////
+      // const webcamElement = document.getElementById('webcam');
+      // const canvasElement = document.getElementById('canvas');
+      // const snapSoundElement = document.getElementById('snapSound');
+      // this.webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
       openNav();
-      this.webcam.start()
-        .then(result => console.log("webcam started"))
-        .catch(err => console.log(err)); 
+      // this.webcam.start()
+      //   .then(result => console.log("webcam started"))
+      //   .catch(err => console.log(err)); 
       
     } else {
       if (this.webcam != null) {
-        this.webcam.stop();
+        let videoElem = this.webcam.video;
+        const stream = videoElem.srcObject;
+  const tracks = stream.getTracks();
+
+  tracks.forEach(function(track) {
+    track.stop();
+  });
+
+  videoElem.srcObject = null;
+
         this.webcam = null;
         console.log("webcam stopped")
       }
@@ -83,7 +142,7 @@ class Camera extends React.Component {
       imagePreview = (
         <div>
         <div>
-          <img width={this.frameWidth} src={this.state.picture}></img>
+          <img width={this.frameWidth} height="304px" src={this.state.picture}></img>
         </div>
         <div>
           <button class="btn" onClick={this.uploadPicture} style={{color: "white"}}>Upload</button>
@@ -104,8 +163,9 @@ class Camera extends React.Component {
             <div>
               <div>
 
-              <video id="webcam" autoplay playsinline width={this.frameWidth}></video>
-              <canvas id="canvas" class="d-none"></canvas>
+              <video id="webcam" autoplay playsinline width={this.frameWidth} style={{display: "none"}}></video>
+              <canvas id="canvas" width={this.frameWidth} height="304px"></canvas>
+              <canvas id="canvasHidden" width={this.frameWidth} height="304px" class="d-none"></canvas>
               <audio id="snapSound" src="./snap.wav" preload = "auto"></audio> 
               </div>
               <button class="btn" onClick={this.takePicture} style={{color: "white"}}>Snap</button>
@@ -129,7 +189,7 @@ class Camera extends React.Component {
 
 
 
-ReactDOM.render(<Camera />, document.getElementById("camera"));
+ReactDOM.render(<CameraApp />, document.getElementById("camera"));
 
 // // add event listener to request camera permission and open camera
 // document.getElementById("btn-camera").onclick = function() {
