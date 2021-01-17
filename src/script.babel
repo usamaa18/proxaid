@@ -142,3 +142,69 @@ function openNav() {
 }
 
 
+class ToggleButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      on: false
+    };
+    this.toggleState = this.toggleState.bind(this);
+  }
+  
+  toggleState() {
+    this.setState(prevState => {
+      return {on: !prevState.on}
+    });
+  }
+
+  render() {
+    let color = {};
+    if (this.state.on) {
+      color["background-color"] = this.props.color;
+    } else {
+      color["background-color"] = "#FFFFFF";
+    }
+    return <button type="button" class="btn" style={color} onClick={this.toggleState} id={this.props.id}>{this.props.html}</button>
+  }
+}
+  
+class HomeControls extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      door: {
+        html: <div><i class="fas fa-door-open"></i> Door</div>,
+        id: "btn-door",
+        color: "#18A0FB"
+      },
+      lights: {
+        html: <div><i class="fas fa-sun"></i> Lights</div>,
+        id: "btn-lights",
+        color: "#FF6D43"
+      },
+      fan: {
+        html: <div><i class="fas fa-fan"></i> Fan</div>,
+        id: "btn-fan",
+        color: "#4CAF50"
+      },
+    };
+    this.toggleState = this.toggleState.bind(this);
+  }
+
+  toggleState(){
+    this.setState()
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+          <ToggleButton {...this.state.door} />
+          <ToggleButton {...this.state.lights} />
+          <ToggleButton {...this.state.fan} />
+      </React.Fragment>
+    )
+  }
+}
+
+ReactDOM.render(<HomeControls />, document.getElementById("home-controls"))
+
