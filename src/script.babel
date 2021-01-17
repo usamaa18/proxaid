@@ -54,7 +54,27 @@ class CameraApp extends React.Component {
           console.log("upload complete");
           
           // optional
-          window.alert("Upload Sucessful");
+          let res = xhr.responseText;
+          console.log("Number of fingers: " + res);
+          let appId = "";
+          switch (res) {
+            case "1": appId = "btn-door";
+                      break;
+            case "2": appId = "btn-lights";
+                      break;
+            case "3": appId = "btn-fan";
+                      break;
+          }
+
+          if (appId != "") {
+            let name = appId.substr(4);
+            window.alert(name.charAt(0).toUpperCase() + name.slice(1) + " toggled");
+            document.getElementById(appId).click();
+
+          } else {
+            window.alert("Not a valid gesture!");
+          }
+
           //componentRef.toggleCamera();
         } else {
           console.log("POST error: " + status);
@@ -62,7 +82,9 @@ class CameraApp extends React.Component {
         }
       }
     };
-    xhr.send(this.state.picture);
+    // TODO: change
+    xhr.send("##sdvnsdjkvnadsvna;dkjvn");
+    this.toggleCamera();
   }
 
   componentDidUpdate () {
