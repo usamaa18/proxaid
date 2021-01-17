@@ -7,10 +7,9 @@ class Camera extends React.Component {
       picture: null
 
     };
+    // change this
+    this.postUrl = "";
 
-    this.props = {
-      postUrl: "http://ptsv2.com/t/0sbyl-1610863008/post"
-    };
     this.webcam = null;
     this.toggleCamera = this.toggleCamera.bind(this);
     this.takePicture = this.takePicture.bind(this);
@@ -33,7 +32,8 @@ class Camera extends React.Component {
 
   uploadPicture() {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", this.props.postUrl, true);
+    xhr.open("POST", this.postUrl, true);
+    // maybe change content-type to image/png
     xhr.setRequestHeader('Content-Type', 'text/plain');
     xhr.onreadystatechange = function() {
       if(xhr.readyState === XMLHttpRequest.DONE) {
@@ -43,6 +43,7 @@ class Camera extends React.Component {
           console.log("upload complete");
           //console.log(xhr.responseText);
         } else {
+          console.log(status);
           // Oh no! There has been an error with the request!
         }
       }
